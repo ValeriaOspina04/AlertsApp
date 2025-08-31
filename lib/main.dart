@@ -50,12 +50,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
-  // Lista de sonidos de emergencia (debes agregar los archivos en assets/audio/)
-  final List<Map<String, String>> emergencySounds = [
-    {'label': 'Alerta General', 'file': 'alerta_general.mp3'},
-    {'label': 'Emergencia Médica', 'file': 'emergencia_medica.mp3'},
-    {'label': 'Incendio', 'file': 'incendio.mp3'},
-    {'label': 'Caída', 'file': 'caida.mp3'},
+  // Lista de sonidos (debes agregar los archivos en assets/audio/)
+  final List<Map<String, String>> Sounds = [
+    {'label': 'Español🇨🇴', 'file': 'holaespañol.mp3'},
+    {'label': 'Ingles🇺🇸', 'file': 'holaIngles.mp3'},
+    {'label': 'Frances🇫🇷', 'file': 'holaFrances.mp3'},
+    {'label': 'Aleman🇩🇪', 'file': 'holaAleman.mp3'},
+    {'label': 'Turco🇹🇷', 'file': 'holaTurco.mp3'},
   ];
 
   void _playSound(String fileName) async {
@@ -67,28 +68,48 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Alertas Sonoras'),
-      ),
+          title: const Text(
+            'Idiomas',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color.fromRGBO(108, 230, 142, 1),
+                Color.fromRGBO(26, 58, 120, 1),
+                ],
+              ),
+            ),
+          ),
+        ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Presiona un botón de emergencia:',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              'Aprende un saludo en distintos idiomas!!',
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const Text(
+              'Presiona un botón para reproducir:',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 32),
-            ...emergencySounds.map((sound) => Padding(
+            ...Sounds.map((sound) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(250, 60),
+                      minimumSize: const Size(260, 60),
                       textStyle: const TextStyle(fontSize: 20),
-                      backgroundColor: Colors.redAccent,
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
                     ),
-                    icon: const Icon(Icons.warning, size: 32),
                     label: Text(sound['label']!),
                     onPressed: () => _playSound(sound['file']!),
                   ),
